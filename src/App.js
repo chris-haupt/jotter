@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Jotter</h1>
+        <h1>Jotter.</h1>
         <div class="input-container">
           <input
             type="text"
