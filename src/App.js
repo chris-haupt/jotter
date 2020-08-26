@@ -23,7 +23,7 @@ function App() {
   };
 
   const addItem = () => {
-    setInputData([...inputData, inputString]);
+    setInputData([inputString, ...inputData]);
     setInputString("");
   };
 
