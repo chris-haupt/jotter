@@ -2,6 +2,7 @@
   text-align: center;
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 .App-header {
@@ -24,11 +25,12 @@
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(350px, 1fr));
   grid-template-rows: repeat(auto-fit);
   grid-column-gap: 1em;
   grid-row-gap: 2em;
   grid-auto-flow: dense;
+  padding: 0 2em;
 }
 
 .card {
@@ -42,7 +44,7 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .card {
     grid-column: 2/3;
   }
