@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import "./App.css";
+import styled from "styled-components";
+
+import Note from "./components/Note";
 
 function App() {
   const [inputString, setInputString] = useState("");
@@ -40,40 +41,60 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Jotter.</h1>
-        <div class="input-container">
-          <input
-            type="text"
-            onChange={getInput}
-            value={inputString}
-            onKeyPress={checkKey}
-          />
-          <button onClick={addItem}>
-            <AiOutlinePlusSquare />
-          </button>
+    <AppContainer>
+      <div className="section">
+        <div className="hero">
+          <h1 className="title is-size-1 is-centered">Jotter.</h1>
+          <div class="input-container">
+            <input
+              className="input is-large"
+              type="text"
+              onChange={getInput}
+              value={inputString}
+              onKeyPress={checkKey}
+            />
+            <button onClick={addItem} className="button">
+              <AiOutlinePlusSquare />
+            </button>
+          </div>
         </div>
-        <div className="card-container">
-          {inputData.length > 0
-            ? inputData.map((item) => {
+      </div>
+      <div className="section">
+        <div className="container">
+          <div className="note-container">
+            {inputData.length > 0 &&
+              inputData.map((item) => {
                 return (
-                  <div className="card">
-                    <p>{item}</p>
-                    <button
-                      onClick={() => deleteItem(inputData.indexOf(item))}
-                      onKeyPress={addItem}
-                    >
-                      <FaTrash />
-                    </button>
-                  </div>
+                  <Note
+                    bodyText={item}
+                    deleteItem={() => deleteItem(inputData.indexOf(item))}
+                  />
                 );
-              })
-            : ""}
+              })}
+          </div>
         </div>
-      </header>
-    </div>
+      </div>
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  font-family: "Gloria Hallelujah", cursive;
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  .input-container {
+    display: flex;
+  }
+
+  .note-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+`;
 
 export default App;
