@@ -1,16 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 
-const Note = ({ setNote }) => {
-    const [noteText, setNoteText] = useState("")
+export default function Subnote({ note }) {
+  console.log({ note });
   return (
-    <div>
-      <input value={noteText} onChange={(e)=>setNoteText(e.target.value)} />
-      <button onClick={()=>setNote(noteText)}>a</button>
+    <div className="box">
+      <p>{note}</p>
     </div>
   );
-};
-
-export default function Subnote({ isEditing, note, setNote }) {
-    console.log({note})
-  return <div>{isEditing ? <Note setNote={setNote} /> : <p>{note}</p>}</div>;
 }

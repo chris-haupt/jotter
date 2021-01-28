@@ -89,6 +89,10 @@ const AppContainer = styled.div`
 
   .input-container {
     display: flex;
+
+    button {
+      height: auto;
+    }
   }
 
   .note-container {

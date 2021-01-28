@@ -11,24 +11,26 @@ export default function Note({ bodyText, deleteItem }) {
   const handleAddSubnote = (note) => {
     console.log({note})
     note ? setIsEditing(false) : setIsEditing(true);
-    note ? setSubnotes([...subnotes, note]) : setSubnotes([...subnotes, " "]);
+    note && setSubnotes([...subnotes, note]);
   };
 
   return (
     <NoteContainer className="note">
       <div className="box main-note">
+        <div className="button-container">
+          <button onClick={deleteItem} className="button">
+            <FaTrash />
+          </button>
+          <button onClick={()=>handleAddSubnote()} className="button">
+            <AiOutlinePlusSquare />
+          </button>
+        </div>
         <p>{bodyText}</p>
-        <button onClick={deleteItem} className="button">
-          <FaTrash />
-        </button>
-        <button onClick={handleAddSubnote} className="button">
-          <AiOutlinePlusSquare />
-        </button>
       </div>
       <Subnotes
         subnotes={subnotes}
         isEditing={isEditing}
-        setNote={()=>handleAddSubnote()}
+        setNote={handleAddSubnote}
       />
     </NoteContainer>
   );
@@ -36,6 +38,10 @@ export default function Note({ bodyText, deleteItem }) {
 
 const NoteContainer = styled.div`
   .main-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
     z-index: 100;
   }
 `;
