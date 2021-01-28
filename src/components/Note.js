@@ -1,29 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import styled from "styled-components";
-import Subnote from "./Subnote";
+import Subnotes from "./Subnotes";
 
 export default function Note({ bodyText, deleteItem }) {
-    const [subnotes, setSubnotes] = useState([]);
+  const [subnotes, setSubnotes] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
-    const addSubnote = (note) => {
-        setSubnotes([...subnotes, note])
-    }
+  const handleAddSubnote = (note) => {
+    console.log({note})
+    note ? setIsEditing(false) : setIsEditing(true);
+    note ? setSubnotes([...subnotes, note]) : setSubnotes([...subnotes, " "]);
+  };
 
   return (
-    <NoteContainer className="box note">
-      <div className="main-note">
+    <NoteContainer className="note">
+      <div className="box main-note">
         <p>{bodyText}</p>
         <button onClick={deleteItem} className="button">
           <FaTrash />
         </button>
-        <button onClick={addSubnote} className="button">
+        <button onClick={handleAddSubnote} className="button">
           <AiOutlinePlusSquare />
         </button>
       </div>
-      <Subnote style={{marginBottom:"-50px"}}/>
-      <Subnote style={{marginBottom:"-30px"}}/>
+      <Subnotes
+        subnotes={subnotes}
+        isEditing={isEditing}
+        setNote={()=>handleAddSubnote()}
+      />
     </NoteContainer>
   );
 }

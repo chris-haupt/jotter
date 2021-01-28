@@ -45,7 +45,7 @@ function App() {
       <div className="section">
         <div className="hero">
           <h1 className="title is-size-1 is-centered">Jotter.</h1>
-          <div class="input-container">
+          <div className="input-container">
             <input
               className="input is-large"
               type="text"
@@ -63,11 +63,12 @@ function App() {
         <div className="container">
           <div className="note-container">
             {inputData.length > 0 &&
-              inputData.map((item) => {
+              inputData.map((item, index) => {
                 return (
                   <Note
                     bodyText={item}
                     deleteItem={() => deleteItem(inputData.indexOf(item))}
+                    key={index}
                   />
                 );
               })}
